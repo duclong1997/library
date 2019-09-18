@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Transactional
@@ -34,6 +35,7 @@ public class BookBrowServiceImpl implements BookBrowService {
     @Override
     public void borrowBook(User user, List<BookBrowedUserModel> listBookBrowed) {
         logger.info("borrow books");
+        List<BookBrow> bookBrows = new ArrayList<>();
         try{
             for (BookBrowedUserModel bookBrowed : listBookBrowed) {
                 Book book = new Book();
@@ -46,11 +48,12 @@ public class BookBrowServiceImpl implements BookBrowService {
                     bookBrow.setUser(user);
                     bookBrow.setStartBrow(bookBrowed.getBeginBrow());
                     bookBrow.setEndBrow(bookBrowed.getEndBrow());
-                    bookBrowDao.borrowBook(bookBrow);
+                    bookBrows.add(bookBrow);
                     logger.info("borrowed book");
                     bookDao.borrowedBook(book);
                 }
             }
+            bookBrowRespository.saveAll(bookBrows);
         }catch (Exception ex)
         {
             logger.error(ex.getMessage());
@@ -67,7 +70,7 @@ public class BookBrowServiceImpl implements BookBrowService {
                 BookBrow bookBrow = bookBrowRespository.getBookBrowByIdUserAndIdBook(user.getIdUser(),bookBrowedUserModel.getIdBook());
                 Book book = new Book();
                 book = bookDao.getBookById(bookBrowedUserModel.getIdBook());
-                // bookbrow note return, book is borrowed.
+                // book doesn't return, book is borrowed.
                 if(bookBrow !=null && book !=null && book.getEnable() ==Common.Book.BORROWED )
                 {
                     bookBrowDao.returnBook(bookBrow);
