@@ -51,17 +51,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
         	http.csrf().disable()				
-				.authorizeRequests()
-                // No need authentication.
-                .antMatchers("/apiv2/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/login").permitAll() 
-                .antMatchers(HttpMethod.POST, "/api/register").permitAll()
-                .antMatchers("/api/**").hasAnyRole("USER", "ADMIN")
-                // Need authentication.
-                .anyRequest().authenticated()
-                .and().addFilterBefore(jwtAuthenticationTokenFilter(), 
-                		UsernamePasswordAuthenticationFilter.class)
-				.exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
+					.authorizeRequests()
+					// No need authentication.
+					.antMatchers("/apiv2/**").permitAll()
+					.antMatchers(HttpMethod.POST, "/api/login").permitAll()
+					.antMatchers(HttpMethod.POST, "/api/register").permitAll()
+					.antMatchers("/api/**").hasAnyRole("USER", "ADMIN")
+					.antMatchers("/apiv2/**").hasRole("ADMIN")
+					// Need authentication.
+					.anyRequest().authenticated()
+					.and().addFilterBefore(jwtAuthenticationTokenFilter(),
+							UsernamePasswordAuthenticationFilter.class)
+					.exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
 	}
  
         @Override
