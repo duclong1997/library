@@ -23,7 +23,7 @@ public class LoginController {
 	@Autowired
 	JwtService jwtService;
 	
-	
+	// login
 	@PostMapping("/login")
 	public Message Login(@RequestBody RequestLogin request)
 	{
@@ -31,11 +31,12 @@ public class LoginController {
 		User user = userService.getUserByUsernamePassword(request.getUsername(), request.getPassword());
 		if(user==null || user.getEnable() !=1)
 		{
-			message.setMessage("Username hoặc password không đúng!");
+			message.setMessage(Common.User.MESSAGE_LOGIN_FALSE);
 			message.setStatus(Common.Status.BAD_REQUEST);
 			return message;
 		}
 		else{
+			// response token to user
 			String token = jwtService.generateTokenLogin(user.getUsername());
 			message.setMessage(token);
 			message.setStatus(Common.Status.OK);

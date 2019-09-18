@@ -156,7 +156,6 @@ public class BookServiceImpl implements BookService {
 	public void addMultiBook(List<BookRegisterModel> bookRegisterModels) {
 		try {
 			logger.info("Add books");
-
 			List<Book> books = new ArrayList<>();
 			for (BookRegisterModel bookRegisterModel : bookRegisterModels) {
 				Category category;

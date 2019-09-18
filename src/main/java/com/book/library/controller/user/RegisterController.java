@@ -1,7 +1,9 @@
 package com.book.library.controller.user;
 
+import com.book.library.models.Message;
 import com.book.library.models.UserRegister;
 import com.book.library.service.UserService;
+import com.book.library.utils.Common;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,14 +18,19 @@ public class RegisterController {
 	UserService userService;
 	
 	@PostMapping("/register")
-	public String registerUser(@RequestBody UserRegister userRegister)
+	public Message registerUser(@RequestBody UserRegister userRegister)
 	{
+		Message message = new Message();
 		try{
 		userService.insertUser(userRegister);
 		}catch(Exception ex)
 		{
-			return ex.getMessage();
+			message.setStatus(Common.Status.BAD_REQUEST);
+			message.setMessage(ex.getMessage());
+			return message;
 		}
-		return "register successfullly!";
+		message.setStatus(Common.Status.OK);
+		message.setMessage(Common.User.MESSAGE_REGISTER_SUCCESS);
+		return message;
 	}
 }

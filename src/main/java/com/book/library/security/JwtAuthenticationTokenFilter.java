@@ -49,7 +49,7 @@ public class JwtAuthenticationTokenFilter extends UsernamePasswordAuthentication
 			} catch (Exception ex) {
 				HttpServletResponse response1 = (HttpServletResponse) response;
 				response1.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-				response1.getWriter().write("Unauthorized");
+				response1.getWriter().write(Common.User.UNAUTHORIZED);
 			}
 		}
 		chain.doFilter(request, response);

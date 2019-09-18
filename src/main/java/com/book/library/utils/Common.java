@@ -13,13 +13,13 @@ public class Common {
 		public static final int BAD_REQUEST =400;
 		public static final int NOT_FOUND =401;
 		public static final int ERROR_SERVER =500;
-		public static final int ACCESS_DINIED =403;
+		public static final int ACCESS_DENIED =403;
 	}
 	// common message
 	public static final class MessageStatus{
-		public static final String ADD_SUCCESS = "Thêm thành công";
-		public static final String UPDATE_SUCCESS = "Thay đổi thành công";
-		public static final String DELETE_SUCCESS = "Xoá thành công";
+		public static final String ADD_SUCCESS = "Thêm thành công!";
+		public static final String UPDATE_SUCCESS = "Thay đổi thành công!";
+		public static final String DELETE_SUCCESS = "Xoá thành công!";
 	}
 
 	// common book
@@ -39,6 +39,13 @@ public class Common {
 	public static final class BookBorrow{
 		public static final int RETURN_BOOK=0;
 		public  static  final int RETURN_BOOK_LATE=2;
+	}
 
+	// common user
+	public  static final class User{
+		public static final String MESSAGE_LOGIN_FALSE="Username hoặc password không đúng!";
+		public static final String MESSAGE_REGISTER_SUCCESS="register successfully!";
+		public static final String UNAUTHORIZED ="Unauthorized";
+		public static final String ACCESS_DENIED ="Access Denied!";
 	}
 }
