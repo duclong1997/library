@@ -37,7 +37,7 @@ public class BrowBookController {
 				return message;
 		}
 		message.setStatus(Common.Status.OK);
-		message.setMessage(Common.MessageStatus.ADD_SUCCESS);
+		message.setMessage(Common.BookBorrow.BORROWED_SUCCESSFULLY);
 		return message;
 	}
 
@@ -48,6 +48,7 @@ public class BrowBookController {
 		// get authentication
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		CustomUser cus = (CustomUser) auth.getPrincipal();
+
 		try {
 			bookBrowService.returnBook(cus.getUser(), listBookBrowed);
 		}catch (Exception ex){
@@ -56,7 +57,7 @@ public class BrowBookController {
 			return message;
 		}
 		message.setStatus(Common.Status.OK);
-		message.setMessage(Common.MessageStatus.ADD_SUCCESS);
+		message.setMessage(Common.BookBorrow.RETURNED_SUCCESSFULLY);
 		return message;
 	}
 }

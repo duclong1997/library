@@ -1,7 +1,7 @@
 package com.book.library.utils;
 
 public class Common {
-	// comomn for jwt
+	// common for jwt
 	public static final String USERNAME = "username";
 	public static final String SECRET_KEY = "motHain@43SvN&djdlksawedj2^2csq3";
 	public static final int EXPIRE_TIME = 86400000;
@@ -38,7 +38,9 @@ public class Common {
 	// common book borrow
 	public static final class BookBorrow{
 		public static final int RETURN_BOOK=0;
-		public  static  final int RETURN_BOOK_LATE=2;
+		public static final int RETURN_BOOK_LATE=2;
+		public static final String BORROWED_SUCCESSFULLY="Mượn sách thành công!";
+		public static final String RETURNED_SUCCESSFULLY="Trả sách thành công!";
 	}
 
 	// common user

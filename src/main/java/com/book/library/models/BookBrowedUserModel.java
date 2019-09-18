@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 public class BookBrowedUserModel {
 	private int idBook;
-	private String nameBook;
 	private Timestamp beginBrow;
 	private Timestamp endBrow;
 }
