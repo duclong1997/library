@@ -31,10 +31,10 @@ private static final long serialVersionUID = 1L;
 	@Column(name="end_brow", nullable=false)
 	private Timestamp endBrow;
 	
-	@Column(name="time_create", insertable=false, updatable=false)
+	@Column(name="time_start", insertable=false, updatable=false)
 	private Timestamp timeCreate;
 	
-	@Column(name="time_update", insertable=false, updatable=false)
+	@Column(name="time_end", insertable=false, updatable=false)
 	private Timestamp timeUpdate;
 	
 	@Column(name="enable", insertable=false, updatable =true)
