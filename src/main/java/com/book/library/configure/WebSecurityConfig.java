@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
-        	http.cors().disable().csrf().disable()
+        	http.csrf().disable()
 					.authorizeRequests()
 					.antMatchers("/**").permitAll()
 					// No need authentication.
@@ -76,4 +76,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	     return new BCryptPasswordEncoder();
     	}
 
+    	@Bean
+        public WebMvcConfigurer corsConfigurer() {
+            return new WebMvcConfigurer() {
+                @Override
+                public void addCorsMappings(CorsRegistry registry) {
+                    registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+                }
+            };
+        }
 }
