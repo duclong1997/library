@@ -1,0 +1,29 @@
+xử lý đồng bộ và bất đồng bộ:
+có @Async : nhằm mục đích cấu hình cho spring boot về việc bất đồng bộ.
+trong đó có 2 thành phần:
+1-ThreadPool: giống như một bể chứa các thread đã được tạo sẵn bởi TreadPool.( giới hạn số lượng thread sử dụng, khi có 
+lượng request gửi đến vượt số request trong threadpool thì các request sẽ ở trong hàng đợi (BlockingQueue).
+Cached thread pool:cho phép tạo thêm thread thiếu, nhưng sẽ tái sử dụng thread cũ. (không nên áp dụng)
+Single-threaded pool: chỉ cho phép 1 thread thực thi 1 nhiệm vụ 1 lúc những request đến sau sẽ phải đợi.
+Fixed thread pool: ra hạn số lượng thread tối đa được tạo.
+Fork/Join pool: là 1 thread  đặc biệt được sử dụng Fork/Join framework bằng cách tự động chia nhỏ công việc tính toán cho 
+các core xử lý
+2-Executor: là đối tượng quả lý các thread và thực hiện tác vụ Runable được yêu cầu. Nó tách riêng việc tạo thread.
+newSingleThreadExecutor(): trong threadpool sẽ chỉ có 1 thread thực thi.
+newCachedThreadPool():cho phép tạo thêm thread khác để thực thi nếu request lớn hơn số lượng thread trong pool nhưng nó
+cũng tái sử dụng những thread cũ.
+newFixedThreadPool(int n): tạo ra n thread để thực hiện, các yêu cầu tới sau sẽ bị đẩy vào hàng đợi.
+newScheduledThreadPool(int corePoolSize): giống với newCachedThreadPool() nhưng có thêm corePoolSize là thời gian delay
+giữa các thread.
+newSingleThreadScheduledExecutor(): giống với newSingleThreadExecutor() nhưng có thêm thời gian delay giữa các thread.
+
+đồng bộ và bất đồng bộ:
+Sử dụng: @EnableAsync trong file cấu hình @Configuration để quản lý các request từ client gửi về server.
+Thêm phần configure như sau trong file configure:
+@Bean
+	TaskExecutor taskExecutor() {
+		return new SimpleAsyncTaskExecutor();
+	}
+để hiểu hơn đọc phần bên trên ( threadpool và Excutor).
+
+trong các controller sử dụng @Async để xác định Api nào sẽ cần đến sự động độ trong xử lý.
