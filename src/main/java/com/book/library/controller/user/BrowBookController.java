@@ -6,6 +6,7 @@ import com.book.library.models.Message;
 import com.book.library.service.BookBrowService;
 import com.book.library.utils.Common;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,7 @@ public class BrowBookController {
 	BookBrowService bookBrowService;
 
 	// brow list book
+//	@Async
 	@PostMapping("/user/userBrow")
 	public Message getBrowBook(@RequestBody List<BookBrowedUserModel> listBookBrowed){
 		Message message = new Message();

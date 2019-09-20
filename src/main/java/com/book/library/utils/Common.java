@@ -39,7 +39,7 @@ public class Common {
 	public static final class BookBorrow{
 		public static final int RETURN_BOOK=0;
 		public static final int RETURN_BOOK_LATE=2;
-		public static final String BORROWED_SUCCESSFULLY="Mượn sách thành công!";
+		public static final String BORROWED_SUCCESSFULLY ="Mượn sách thành công!";
 		public static final String RETURNED_SUCCESSFULLY="Trả sách thành công!";
 	}
 

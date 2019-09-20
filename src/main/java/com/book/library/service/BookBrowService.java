@@ -8,6 +8,5 @@ import java.util.List;
 public interface BookBrowService {
     public void borrowBook(User user, List<BookBrowedUserModel> listBookBrowed);
     public void returnBook(User user, List<BookBrowedUserModel> listBookBrowed);
-
     public boolean checkTimeBorrow(int idBook);
 }

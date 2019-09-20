@@ -1,8 +1,11 @@
 package com.book.library.service;
 
 import com.book.library.entity.User;
+import com.book.library.models.UserBorrowBook;
 import com.book.library.models.UserModel;
 import com.book.library.models.UserRegister;
+
+import java.util.List;
 
 public interface UserService {
 
@@ -25,4 +28,11 @@ public interface UserService {
 	 * parameter: Usermodel
 	 */
 	public void editUser(UserModel userModel, int iduser);
+
+	/**
+	 *
+	 * @param idUser
+	 * @return UserBorrowBook
+	 */
+	public List<UserBorrowBook> getBookBorrowByUser(int idUser);
 }
