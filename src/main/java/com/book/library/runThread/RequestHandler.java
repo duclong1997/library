@@ -83,7 +83,7 @@ public class RequestHandler implements Runnable {
 
         int responseCode = con.getResponseCode();
         System.out.println("\nSending 'POST' request to URL : " + url);
-        System.out.println("Post parameters : " );
+        System.out.println("Post parameters : "+ jsonBookBorrows);
         System.out.println("Response Code : " + responseCode);
 
         BufferedReader in = new BufferedReader(
