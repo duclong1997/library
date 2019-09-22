@@ -26,13 +26,20 @@ public class BrowBookController {
 	// brow list book
 //	@Async
 	@PostMapping("/user/userBrow")
-	public Message getBrowBook(@RequestBody List<BookBrowedUserModel> listBookBrowed){
+	public synchronized Message getBrowBook(@RequestBody List<BookBrowedUserModel> listBookBrowed){
 		Message message = new Message();
-		// get authentication
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		CustomUser cus = (CustomUser) auth.getPrincipal();
 		try {
-			bookBrowService.borrowBook(cus.getUser(), listBookBrowed);
+			// get authentication
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			// check authentication
+			if(auth.getPrincipal().equals("anonymousUser")){
+				message.setStatus(Common.Status.ERROR_SERVER);
+				message.setMessage(Common.User.UNAUTHORIZED);
+				return message;
+			}else {
+				CustomUser cus = (CustomUser) auth.getPrincipal();
+				bookBrowService.borrowBook(cus.getUser(), listBookBrowed);
+			}
 		}catch (Exception ex){
 				message.setStatus(Common.Status.BAD_REQUEST);
 				message.setMessage(ex.getMessage());
@@ -45,14 +52,20 @@ public class BrowBookController {
 
 	// return list books
 	@PostMapping("/user/userReturn")
-	public Message getReturnBook(@RequestBody List<BookBrowedUserModel> listBookBrowed){
+	public synchronized Message getReturnBook(@RequestBody List<BookBrowedUserModel> listBookBrowed){
 		Message message = new Message();
-		// get authentication
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		CustomUser cus = (CustomUser) auth.getPrincipal();
-
 		try {
-			bookBrowService.returnBook(cus.getUser(), listBookBrowed);
+			// get authentication
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			// check authentication
+			if(auth.getPrincipal().equals("anonymousUser")){
+				message.setStatus(Common.Status.ERROR_SERVER);
+				message.setMessage(Common.User.UNAUTHORIZED);
+				return message;
+			}else {
+				CustomUser cus = (CustomUser) auth.getPrincipal();
+				bookBrowService.returnBook(cus.getUser(), listBookBrowed);
+			}
 		}catch (Exception ex){
 			message.setStatus(Common.Status.BAD_REQUEST);
 			message.setMessage(ex.getMessage());

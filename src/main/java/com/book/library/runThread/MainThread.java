@@ -5,8 +5,8 @@ import java.util.concurrent.Executors;
 
 public class MainThread {
     public static void main(String[] args) {
-//        1 thread run, 100 request
-        ExecutorService executor = Executors.newFixedThreadPool(1);
+//        100 thread run, 100 request
+        ExecutorService executor = Executors.newFixedThreadPool(100);
         int index =0;
         for (int i = 0; i < 100; i++) {
             if (index==6)

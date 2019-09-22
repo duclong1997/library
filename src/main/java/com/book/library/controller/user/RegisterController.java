@@ -18,7 +18,7 @@ public class RegisterController {
 	UserService userService;
 	
 	@PostMapping("/register")
-	public Message registerUser(@RequestBody UserRegister userRegister)
+	public synchronized Message registerUser(@RequestBody UserRegister userRegister)
 	{
 		Message message = new Message();
 		try{
