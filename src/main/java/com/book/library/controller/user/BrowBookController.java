@@ -32,7 +32,7 @@ public class BrowBookController {
 			// get authentication
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			// check authentication
-			if(auth.getPrincipal().equals("anonymousUser")){
+			if(auth.getPrincipal().equals(Common.User.ANOUNYMOUS_USER)){
 				message.setStatus(Common.Status.ERROR_SERVER);
 				message.setMessage(Common.User.UNAUTHORIZED);
 				return message;
@@ -58,7 +58,7 @@ public class BrowBookController {
 			// get authentication
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			// check authentication
-			if(auth.getPrincipal().equals("anonymousUser")){
+			if(auth.getPrincipal().equals(Common.User.ANOUNYMOUS_USER)){
 				message.setStatus(Common.Status.ERROR_SERVER);
 				message.setMessage(Common.User.UNAUTHORIZED);
 				return message;

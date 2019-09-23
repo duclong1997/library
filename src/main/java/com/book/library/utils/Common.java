@@ -49,5 +49,6 @@ public class Common {
 		public static final String MESSAGE_REGISTER_SUCCESS="register successfully!";
 		public static final String UNAUTHORIZED ="Unauthorized";
 		public static final String ACCESS_DENIED ="Access Denied!";
+		public static final String ANOUNYMOUS_USER= "anonymousUser";
 	}
 }

@@ -1,13 +1,9 @@
 package com.book.library.runThread;
 
-import com.book.library.models.BookBrowedUserModel;
 import lombok.Data;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -17,17 +13,18 @@ public class ListBookBorrow {
 
     public ListBookBorrow(){
 
-        long ts = System.currentTimeMillis()/1000;
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        long tsBegin = timestamp.getTime();
 
         Random ran = new Random();
         int valueRandom = 10+ ran.nextInt(295);
-        long ts1 =ts+valueRandom;
+        long tsEnd =tsBegin+valueRandom;
 
-        Random valueRan= new Random();
         int index = 20+ ran.nextInt(12);
         int i=1;
         while (i<=index) {
-            listBookBorrow.add(new BookBrowedModelThread(i, ts, ts1));
+            listBookBorrow.add(new BookBrowedModelThread(i, tsBegin, tsEnd));
             i++;
         }
     }

@@ -28,7 +28,7 @@ public class UserController {
 			// get authentication
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			// check authentication
-			if(auth.getPrincipal().equals("anonymousUser")){
+			if(auth.getPrincipal().equals(Common.User.ANOUNYMOUS_USER)){
 				message.setStatus(Common.Status.ERROR_SERVER);
 				message.setMessage(Common.User.UNAUTHORIZED);
 				return message;
@@ -57,7 +57,7 @@ public class UserController {
 			// get authentication
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			// check authentication
-			if (auth.getPrincipal().equals("anonymousUser")) {
+			if (auth.getPrincipal().equals(Common.User.ANOUNYMOUS_USER)) {
 				logger.error(Common.User.UNAUTHORIZED);
 			} else {
 				CustomUser cus = (CustomUser) auth.getPrincipal();
@@ -82,7 +82,7 @@ public class UserController {
 			// get authentication
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			// check authentication
-			if (auth.getPrincipal().equals("anonymousUser")) {
+			if (auth.getPrincipal().equals(Common.User.ANOUNYMOUS_USER)) {
 				logger.error(Common.User.UNAUTHORIZED);
 			} else {
 				CustomUser cus = (CustomUser) auth.getPrincipal();
