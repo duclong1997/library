@@ -36,11 +36,10 @@ public class JwtService {
 		}
 		return token;
 	}
-	
+
 	private byte[] generateShareSecret() {
 		// Generate 256-bit (32-byte) shared secret
-		byte[] sharedSecret = new byte[32];
-		sharedSecret = Common.SECRET_KEY.getBytes();
+		byte[] sharedSecret = Common.SECRET_KEY.getBytes();
 		return sharedSecret;
 	}
 	

@@ -22,7 +22,7 @@ public class BookController {
 
 	@Autowired
 	BookBrowService bookBrowService;
-	
+
 	// get list books
 	@GetMapping("/book")
 	public List<BookModel> getBook()
@@ -76,7 +76,7 @@ public class BookController {
 		message.setMessage(Common.MessageStatus.UPDATE_SUCCESS);
 		return message;
 	}
-		
+
 	// delete book
 	@DeleteMapping("/book/delete/{idBook}")
 	public Message deleteBook(@PathVariable(name="idBook") int idBook)
